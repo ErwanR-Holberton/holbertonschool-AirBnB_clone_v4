@@ -1,26 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
     console.log('DOM is loaded!');
-    let selectedAmenities = []
-    const popover = document.querySelector('#popover');
-    popover.classList.toggle('red');
-    const ul = popover.querySelector('ul');
-    for (let i = 0; i < ul.children.length; i++) {
-        const amenity = ul.children[i];
-        const checkbox = amenity.querySelector('input');
-        checkbox.addEventListener('click', function () {
-            console.log('Checkbox clicked!');
-            amenity.classList.toggle('red');
-            popover.classList.toggle('red');
-            checkbox.classList.toggle('red');
-            ul.classList.toggle('red');
-        })
-    }
-/*
-    const checkboxes = document.querySelectorAll('li input');
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('click', function () {
-            const id = checkbox.
-            if ()
-        });
-    });*/
+    let selectedAmenities = {};
+    $('input[type="checkbox"]').change(function() {
+        let amenityId = $(this).data('id');
+        let amenityName = $(this).data('name');
+        if ($(this).prop('checked')) {
+            selectedAmenities[amenityId] = amenityName;
+            console.log(selectedAmenities);
+        } else {
+            delete selectedAmenities[amenityId];
+            console.log(selectedAmenities);
+        }
+        let selectedAmenitiesText = Object.values(selectedAmenities).join(', ');
+        $('.amenities h4').text(selectedAmenitiesText);
+    });
 });
