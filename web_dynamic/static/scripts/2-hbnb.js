@@ -16,10 +16,8 @@ $(document).ready(function() {
     {
         if (data.status === "OK") {
             $('#api_status').addClass("available");
-            console.log("added class");
         } else {
             $('#api_status').removeClass("available");
-            console.log("rm class");
         }
     });
 });
